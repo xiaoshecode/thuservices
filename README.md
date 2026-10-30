@@ -159,11 +159,18 @@
 
 欢迎贡献！请 [PR](https://github.com/ZenithalHourlyRate/thuservices/pulls)！
 
-需要注意的是[本 repo](https://github.com/ZenithalHourlyRate/thuservices) 中使用了 [pre-commit hook](https://github.com/ZenithalHourlyRate/thuservices/blob/master/pre-commit)，请[安装](https://git-scm.com/book/zh/v2/%E8%87%AA%E5%AE%9A%E4%B9%89-Git-Git-%E9%92%A9%E5%AD%90)，并在有 bash 与 python3 的环境中进行 commit。
+本 Fork 使用自己的 [pre-commit hook](https://github.com/xiaoshecode/thuservices/blob/master/pre-commit)，需要 Bash 与 Python 3。请安装本仓库的版本；上游 hook 的模板路径与本 Fork 不同。
 
 在 pre-commit hook 的作用下，README.md 是自动生成的，故如果需要在 README.md 中修改，请在 [source-docs 文件夹](https://github.com/xiaoshecode/thuservices/tree/master/source-docs)下进行。
 
-本 Fork 将上游的 aux/ 改为 source-docs/，避免 Windows 保留目录名导致克隆失败；Git Bash 中仍可使用原来的生成流程。
+本 Fork 将上游的 aux/ 改为 source-docs/，避免 Windows 保留目录名导致克隆失败。已经复制到 `.git/hooks/pre-commit` 的旧 hook 不会随代码更新，升级后必须重新安装，否则它仍会读取已移除的 `aux/`，可能清空或生成不完整的 README。
+
+在仓库根目录的 Bash / Git Bash 中安装或升级 hook。若现有 hook 包含其他检查，请先保留并合并那些逻辑，再执行安装：
+
+```sh
+cp pre-commit "$(git rev-parse --git-path hooks/pre-commit)"
+chmod +x "$(git rev-parse --git-path hooks/pre-commit)"
+```
 
 ### 编译
 
